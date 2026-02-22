@@ -4,7 +4,10 @@ import java.security.Principal;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import me.cho.springbootdeveloper.domain.Article;
+import me.cho.springbootdeveloper.domain.Comment;
 import me.cho.springbootdeveloper.dto.AddArticleRequest;
+import me.cho.springbootdeveloper.dto.AddCommentRequest;
+import me.cho.springbootdeveloper.dto.AddCommentResponse;
 import me.cho.springbootdeveloper.dto.ArticleResponse;
 import me.cho.springbootdeveloper.dto.UpdateArticleRequest;
 import me.cho.springbootdeveloper.service.BlogService;
@@ -68,5 +71,14 @@ public class BlogApiController {
 
         return ResponseEntity.ok()
             .body(updatedArticle);
+    }
+
+    @PostMapping("/api/comments")
+    public ResponseEntity<AddCommentResponse> addComment(@RequestBody AddCommentRequest request,
+        Principal principal) {
+        Comment savedComment = blogService.addComment(request, principal.getName());
+
+        return ResponseEntity.status(HttpStatus.CREATED)
+            .body(new AddCommentResponse(savedComment));
     }
 }
