@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="CLOUD_WATCH" class="ca.pjer.logback.AwsLogsAppender">
+    <logGroupName>/springboot-developer/logs</logGroupName>
+    <logStreamName>application</logStreamName>
+    <logRegion>ap-northeast-2</logRegion>
+    <maxBatchLogEvents>50</maxBatchLogEvents>
+    <maxFlushTimeMillis>30000</maxFlushTimeMillis>
+  </appender>
+
+  <root level="INFO">
+    <appender-ref ref="CLOUD_WATCH"/>
+  </root>
+</configuration>

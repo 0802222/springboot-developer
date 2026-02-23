@@ -28,5 +28,7 @@ jwt:
   secret_key: ${JWT_SECRET}
 
 logging:
+  file:
+    name: logs/app.log
   level:
     org.springframework.security: DEBUG
